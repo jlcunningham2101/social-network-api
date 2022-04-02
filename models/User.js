@@ -1,6 +1,4 @@
-const { truncateSync } = require("fs");
 const { Schema, model } = require("mongoose");
-const { stringify } = require("querystring");
 
 const UserSchema = new Schema(
   {
@@ -12,14 +10,14 @@ const UserSchema = new Schema(
     },
     email: {
       type: String,
-      unique: true,
       required: true,
+      unique: true,
       match: [
         "/^w+([.-]?w+)*@w+([.-]?w+)*(.w{2,3})+$/",
         "Please fill a valid email address",
       ],
     },
-    thought: [
+    thoughts: [
       {
         type: Schema.Types.ObjectId,
         ref: "Thought",
@@ -44,4 +42,5 @@ UserSchema.virtual("friendCount").get(function () {
 });
 
 const User = model("User", UserSchema);
+
 module.exports = User;
