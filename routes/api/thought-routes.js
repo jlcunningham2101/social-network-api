@@ -16,4 +16,4 @@ POST to create a new thought (don't forget to push the created thought's _id to 
 PUT to update a thought by its _id
 
 DELETE to remove a thought by its _id
-
+*/
