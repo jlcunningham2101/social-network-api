@@ -1,4 +1,4 @@
-const { Reaction } = require("../models");
+/*const { Reaction } = require("../models");
 
 const reactionController = {
   // the functions will go in here as methods
