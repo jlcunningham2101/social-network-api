@@ -2,8 +2,6 @@ const res = require("express/lib/response");
 const { Thought, User } = require("../models");
 
 const thoughtController = {
-  // get all thoughts
-  // GET /api/thought
   getAllThoughts(req, res) {
     Thought.find({})
       .populate({
@@ -23,8 +21,6 @@ const thoughtController = {
       });
   },
 
-  // get single thought by id
-  // GET /api/thought/:id
   getThoughtById({ params }, res) {
     Thought.findOne({ _id: params.id })
       .populate({
@@ -45,8 +41,6 @@ const thoughtController = {
       });
   },
 
-  // create single thought
-  // POST /api/thought
   createThought({ body }, res) {
     Thought.create(body)
       .then(({ _id }) => {
@@ -69,8 +63,6 @@ const thoughtController = {
       });
   },
 
-  // update thought by id
-  // PUT /api/thought/:id
   updateThought({ params, body }, res) {
     Thought.findOneAndUpdate({ _id: params.id }, body, { new: true })
       .then((dbThoughtData) => {
@@ -86,8 +78,6 @@ const thoughtController = {
       });
   },
 
-  // delete thought by id
-  // DELETE /api/thought/:id
   deleteThought({ params }, res) {
     Thought.findOneAndDelete({ _id: params.id })
       .then((dbThoughtData) => {
@@ -103,8 +93,6 @@ const thoughtController = {
       });
   },
 
-  // create single reaction
-  // POST /api/thought/:thoughtId/reactions
   createReaction({ params, body }, res) {
     Thought.findOneAndUpdate(
       { _id: params.thoughtId },
@@ -124,8 +112,6 @@ const thoughtController = {
       });
   },
 
-  // delete reaction
-  //  /api/thought/:thoughtId/:reactionId
   deleteReaction({ params }, res) {
     Thought.findOneAndUpdate(
       { _id: params.thoughtId },

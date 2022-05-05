@@ -2,8 +2,6 @@ const res = require("express/lib/response");
 const { User } = require("../models");
 
 const userController = {
-  // get all users
-  // GET /api/user
   getAllUsers(req, res) {
     User.find({})
       .populate({
@@ -23,8 +21,6 @@ const userController = {
       });
   },
 
-  // get single user by id
-  // GET /api/user/:id
   getUserById({ params }, res) {
     User.findOne({ _id: params.id })
       .populate({
@@ -49,16 +45,12 @@ const userController = {
       });
   },
 
-  // create single user
-  // POST /api/user
   createUser({ body }, res) {
     User.create(body)
       .then((dbUserData) => res.json(dbUserData))
       .catch((err) => res.status(400).json(err));
   },
 
-  // create a friend using another user id
-  // POST user/:userId/friends/:friendsId
   createFriend({ params }, res) {
     User.findOneAndUpdate(
       { _id: params.userId },
@@ -74,8 +66,6 @@ const userController = {
       .catch((err) => res.status(400).json(err));
   },
 
-  // update user by id
-  // PUT /api/user/:id
   updateUser({ params, body }, res) {
     User.findOneAndUpdate({ _id: params.id }, body, { new: true })
       .then((dbUserData) => {
@@ -88,8 +78,6 @@ const userController = {
       .catch((err) => res.status(400).json(err));
   },
 
-  // delete user by id
-  // DELETE /api/user/:id
   deleteUser({ params }, res) {
     User.findOneAndDelete({ _id: params.id })
       .then((dbUserData) => {
@@ -102,8 +90,6 @@ const userController = {
       .catch((err) => res.status(400).json(err));
   },
 
-  // delete friend by id
-  // DELETE /api/user/:userId/friends/:friendsId
   deleteFriend({ params }, res) {
     User.findOneAndUpdate(
       { _id: params.userId },
